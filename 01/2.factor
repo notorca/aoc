@@ -12,11 +12,11 @@ IN: 01_2
   command-line get dup empty? [ drop "input.txt" ] [ first ] if
   ascii file-lines ;
 
+<<
 CONSTANT: digits-as-words { "one" "two" "three" "four" "five" "six" "seven" "eight" "nine" }
 CONSTANT: digits { "1" "2" "3" "4" "5" "6" "7" "8" "9" }
-
-MEMO: mapping ( -- assoc )
-  digits-as-words digits append digits 2 repeat zip ;
+>>
+CONSTANT: mapping $[ digits-as-words digits append digits 2 repeat zip ]
 
 : tails-strings ( string -- seq )
   [ dup empty? not ] [ [ rest ] keep ] produce nip ;
