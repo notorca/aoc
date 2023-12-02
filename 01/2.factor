@@ -2,7 +2,7 @@
 
 USING: ascii assocs command-line io.encodings.ascii io.files
 kernel literals math namespaces prettyprint sequences
-sequences.extras sequences.repeating ;
+sequences.extras sequences.repeating grouping.extras ;
 
 IN: 01_2
 
@@ -18,14 +18,11 @@ CONSTANT: digits { "1" "2" "3" "4" "5" "6" "7" "8" "9" }
 >>
 CONSTANT: mapping $[ digits-as-words digits append digits 2 repeat zip ]
 
-: tails-strings ( string -- seq )
-  [ dup empty? not ] [ [ rest ] keep ] produce nip ;
-
 :: map-to-digit ( prefix-string -- digit/f )
   mapping [ first prefix-string swap head? ] map-find nip [ second ] [ f ] if* ;
 
 : fix-string ( s -- sr )
-  tails-strings [ map-to-digit ] [ ] map-filter concat ;
+  all-suffixes [ map-to-digit ] [ ] map-filter concat ;
 
 
 PRIVATE>
