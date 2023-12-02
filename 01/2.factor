@@ -1,8 +1,8 @@
 #!/usr/bin/env factor
 
 USING: ascii assocs command-line io.encodings.ascii io.files
-kernel math namespaces prettyprint sequences sequences.extras
-sequences.repeating ;
+kernel literals math namespaces prettyprint sequences
+sequences.extras sequences.repeating ;
 
 IN: 01_2
 
@@ -32,5 +32,5 @@ PRIVATE>
 
 MAIN: [
 input-file-lines
-[ fix-string [ digit? ] filter [ first 48 - 10 * ] [ last 48 - ] bi + ] map sum .
+[ fix-string [ digit? ] filter [ first CHAR: 0 - 10 * ] [ last CHAR: 0 - ] bi + ] map sum .
 ]
