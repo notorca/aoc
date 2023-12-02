@@ -9,7 +9,7 @@ IN: 01_2
 <PRIVATE
 
 : input-file-lines ( -- seq )
-  command-line get dup empty? [ drop "input.txt" ] [ first ] if
+  command-line get [ "input.txt" ] [ first ] if-empty
   ascii file-lines ;
 
 <<
